@@ -10,5 +10,10 @@
   Excelente!!!!!!!!.... Es muy facil usar plantillas.
   <p style="color: red">Mi nombre es: {{ nombre }}</p>
   <p style="color: green">Mi apellido es: {{ apellido }}</p>
+  <p style="color: rgb(128, 0, 100)">Pase por este servidor: {{ hora }}</p>
+  <p style="color: rgb(66, 194, 194)">Ciudades favoritas: {{ ciudades_preferidas }}</p>
+  {% for ciudad in ciudades_preferidas %}
+      {{ ciudad }} </br>
+  {% endfor %}
 </body>
 </html>
