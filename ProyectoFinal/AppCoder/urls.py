@@ -5,7 +5,8 @@ from AppCoder.views import (
     cursos_buscar_view,
     cursos_todos_view,
     inicio_view,
-    profesores_view
+    profesores_view,
+    lista_profesores_view
     )
 
 
@@ -17,4 +18,5 @@ urlpatterns = [
     path("cursos/buscar", cursos_buscar_view, name="cursos-buscar"),
     path("comisiones/", profesores_view),
     path("inicio/", inicio_view, name="inicio"),
+    path("lista-profesores/", lista_profesores_view, name="lista-profesores"),
 ]

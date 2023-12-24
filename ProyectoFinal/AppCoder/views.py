@@ -1,11 +1,8 @@
 from datetime import date
-
 from django.shortcuts import redirect, render
-
 from datetime import datetime
 from . import models
-from .models import Curso
-
+from .models import Curso, Profesor
 from .forms import CursoFormulario, CursoBuscarFormulario
 
 
@@ -44,8 +41,8 @@ def cursos_todos_view(request):
 
 def cursos_view(request):
     if request.method == "GET":
-        print("+" * 90) #  Imprimimos esto para ver por consola
-        print("+" * 90) #  Imprimimos esto para ver por consola
+        print("+" * 90)
+        print("+" * 90)
         form = CursoFormulario()
         return render(
             request,
@@ -62,7 +59,7 @@ def cursos_view(request):
         return redirect("AppCoder:inicio")
 
 
-def profesores_view(xx):
+def profesores_view(request):
     nombre = "Mariano Manuel"
     apellido = "Barracovich"
     ahora = datetime.now()
@@ -72,5 +69,9 @@ def profesores_view(xx):
         "nacionalidad": "argentino",
         "hora": ahora,
         "ciudades_preferidas": ["Buenos Aires", "Lima", "San Pablo", "Trieste"]
-    }  # Para enviar al contexto
-    return render(xx, "AppCoder/padre.html", diccionario)
+    }
+    return render(request, "AppCoder/padre.html", diccionario)
+
+def lista_profesores_view(request):
+    profesores = Profesor.objects.all()
+    return render(request, "AppCoder/leerProfesores.html", {'profesores': profesores})
