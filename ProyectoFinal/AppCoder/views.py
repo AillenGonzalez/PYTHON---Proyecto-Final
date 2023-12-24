@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import Template, Context
 from datetime import datetime
 from .forms import CursoFormulario
+from .models import Curso
 
 def inicio_view(request):
     return render(request, "AppCoder/inicio.html")
@@ -16,14 +17,15 @@ def cursos_view(request):
             context={"form": form}
         )
     else:
-        print(request.POST)
-
-        from .models import Curso
-
-        mi_curso = Curso(curso=request.POST["curso"], camada=request.POST["camada"])
-        mi_curso.save()
-
+        formulario = CursoFormulario(request.POST)
+        if formulario.is_valid():
+            informacion = formulario.cleaned_data
+            mi_curso = Curso(curso=request.POST["curso"], camada=request.POST["camada"])
+            mi_curso.save()
         return redirect("AppCoder:inicio")
 
 def profesores_view(request):
     return render(request, "AppCoder/padre.html")
+
+def videojuegos_view(request):
+    return render(request, "AppCoder/videojuegos.html")
