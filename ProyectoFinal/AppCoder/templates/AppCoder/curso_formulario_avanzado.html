@@ -15,8 +15,7 @@
 <body style="background-color: pink;">
     <form action="/AppCoder/cursos/" method="POST">
         {% csrf_token %}
-        <p>Curso: <input type="text" name="curso"> </p>
-        <p>Camada: <input type="number" name="camada"> </p>
+        {{ form.as_p }}
         <input type="submit" value="Guardar">
     </form>
 </body>
